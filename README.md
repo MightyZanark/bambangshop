@@ -90,5 +90,16 @@ This is the place for you to write reflections:
 3. Menurut saya, kita bisa-bisa saja mengimplementasikan pattern Singleton, namun tenaga yang harus dikeluarkan untuk mengimplementasikannya jugalah besar karena Rust memiliki banyak restriksi terkait static variable dan mutability. Sehingga, dalam kasus ini dimana kita hanya ingin menyimpan `Subscriber` berdasarkan `product_type` yang di *subscribe*, menurut saya tenaga yang harus dikeluarkan terlalu besar dibanding apa yang ingin dicapai, sehingga akan lebih mudah menggunakan DashMap untuk mencapai apa yang kita inginkan.
 
 #### Reflection Publisher-2
+> In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+1. Kita harus memisahkan `Service` dan `Repository` dari `Model` agar setiap komponen dalam kode kita memenuhi prinsip *Single Responsibility*. Dengan memisahkan `Service` dan `Repository` dari `Model`, kita memisahkan pula tanggung jawab `Model` yang awalnya bertanggung jawab menghandle penyimpanan data, *business logic*, dan representasi data, menjadi hanya representasi data. Tanggung jawab penyimpanan data diberikan kepada `Repository` dan tanggung jawab *business logic* diberikan kepada `Service`.
+
+> What happens if we only use the Model? Explain your imagination on how the interactions between each model (Product, Subscriber, Notification) affect the code complexity for each model?
+
+2. Ketika kita hanya menggunakan `Model`, kode di setiap `Model` akan menjadi lebih kompleks karena banyak tanggung jawab lain yang harus di handle selain tanggung jawab representasi data. Sebuah `Subscriber` saja sudah berinteraksi banyak dengan `Notification`, seperti bisa `subscribe`, `unsubsribe`, diberikan notifikasi ketika ada perubahan pada `product_type` yang di *subscribe*, dan bisa saja masih banyak lagi. Jika semua kode ini digabungkan ke dalam satu `Model`, tentu akan susah untuk menentukan sebenarnya apa yang dilakukan `Model` tersebut.
+
+> Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+3. Saya belum terlalu mengeksplor banyak mengenai `Postman`, namun dari apa yang sudah saya ketahui, alat tersebut cukup membantu dalam melakukan testing terhadap API yang saya buat. HTTP Request yang bisa dilakukan juga tidak sebatas `GET` dan `POST` sehingga saya bisa dengan mudah mengetes apakah *endpoint* tertentu benar hanya dapat menerima suatu tipe HTTP Request atau tidak. Terdapat juga fitur menambahkan `Headers` dan `Authorization` yang menurut saya akan dapat digunakan dalam Tugas Kelompok saya atau projek lainnya yang menggunakan *custom headers* dan *authorization*. Secara keseluruhan menurut saya aplikasi `Postman` sangatlah membantu melakukan API testing, dibanding harus membuat script sendiri atau mengetes langsung dengan browser.
 
 #### Reflection Publisher-3
